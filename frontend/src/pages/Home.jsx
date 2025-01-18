@@ -168,7 +168,7 @@ const Home = () => {
           </p>
           <div className="flex justify-center items-center gap-4">
             <a
-              href="/signin" // Redirect to /signin
+              href="/signup" // Redirect to /signin
               aria-label="Demo video"
             >
               <div className="w-fit flex justify-center items-center mt-8 text-[#4c4fee] gap-2 px-4 py-2 bg-gray-200 rounded-lg">

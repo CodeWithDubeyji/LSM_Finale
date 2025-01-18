@@ -1,18 +1,33 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
-const App = () => {
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './components/AuthProvider';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Kundli from './pages/Kundli'; // Example private page
+
+function App() {
   return (
-    <div>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-      </Routes>
-    </div>
-  )
+    <AuthProvider>
+      
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          {/* Protect routes using ProtectedRoute */}
+          <Route
+            path="/kundli"
+            element={
+              <ProtectedRoute>
+                <Kundli />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
