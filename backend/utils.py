@@ -140,15 +140,15 @@ def get_kundli_match_details():
     
     return fetch_kundli_data("kundli_matching_match_details", matching_data)
 
-def get_kundali_dosha_details():
+def get_kundali_match_dosha_details():
     '''Kundali doshas are astrological combinations that indicate potential challenges or obstacles in a person’s life. They can affect various aspects like health, relationships, and career. Understanding and addressing these doshas can help in minimizing their negative effects.'''
     return fetch_kundli_data("kundli_matching_dosha_details", user_data)
 
-def get_kundli_manglik_details():
+def get_kundli_match_manglik_details():
     '''Manglik Dosha is an astrological condition caused by the planet Mars in specific positions in the birth chart. It is believed to affect marriage and relationships, leading to conflicts and challenges. Remedies and precautions can help mitigate the effects of Manglik Dosha.'''
     return fetch_kundli_data("kundli_matching_manglik_details", user_data)
 
-def get_kundli_ashtakoota_details():  
+def get_kundli_match_ashtakoota_details():  
     '''Ashtakoota matching is a method of Kundli matching that assesses the compatibility between two individuals based on eight factors or gunas. Each factor represents different aspects of life and relationships, providing insights into the harmony and challenges in a marriage.'''
     return fetch_kundli_data("kundli_matching_ashtakoota_details", matching_data)
 

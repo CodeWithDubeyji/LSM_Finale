@@ -74,13 +74,17 @@ def major_vimshottari_dasha():
 def kundli_match_details():
     return jsonify(utils.get_kundli_match_details())
 
-@app.route('/kundali_dosha_details', methods=['GET'])
+@app.route('/kundali_match_dosha_details', methods=['GET'])
 def kundali_dosha_details():
-    return jsonify(utils.get_kundali_dosha_details())
+    return jsonify(utils.get_kundali_match_dosha_details())
 
-@app.route('/kundli_ashtakoota_details', methods=['GET'])
+@app.route('/kundli_match_manglik_details', methods=['GET'])
+def kundli_match_manglik_details():
+    return jsonify(utils.get_kundli_match_manglik_details())
+
+@app.route('/kundli_match_ashtakoota_details', methods=['GET'])
 def kundli_ashtakoota_details():
-    return jsonify(utils.get_kundli_ashtakoota_details())
+    return jsonify(utils.get_kundli_match_ashtakoota_details())
 
 if __name__ == '__main__':
     app.run(debug=True)
