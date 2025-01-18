@@ -5,7 +5,7 @@ import utils
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def home():
     return "<h1>3beans4coffee!!!</h1>"
 
@@ -20,39 +20,38 @@ def test():
 # Add routes for each function in utils.py
 @app.route('/astro_kundli_details', methods=['GET'])
 def astro_kundli_details():
-    return jsonify(utils.get_astro_kundli_details())
+    return jsonify(utils.get_astro_kundli_details.invoke(""))
 
 @app.route('/kundli_numerology_details', methods=['GET'])
 def kundli_numerology_details():
-    return jsonify(utils.get_kundli_numerology_details())
+    return jsonify(utils.get_kundli_numerology_details.invoke(""))
 
 @app.route('/daily_kundli_nakshatra', methods=['GET'])
 def daily_kundli_nakshatra():
-    return jsonify(utils.get_daily_kundli_nakshatra())
+    return jsonify(utils.get_daily_kundli_nakshatra.invoke(""))
 
 @app.route('/hora_chart_details', methods=['GET'])
 def hora_chart_details():
-    return jsonify(utils.get_hora_chart_details())
+    return jsonify(utils.get_hora_chart_details.invoke(""))
 
 @app.route('/kundli_planetary_details', methods=['GET'])
 def kundli_planetary_details():
-    return jsonify(utils.get_kundli_planetary_details())
+    return jsonify(utils.get_kundli_planetary_details.invoke(""))
 
-@app.route('/kundli_manglik_details', methods=['GET'])
-def kundli_manglik_details():
-    return jsonify(utils.get_kundli_manglik_details())
 
-@app.route('/kundli_kalsarpa_details', methods=['GET'])
-def kundli_kalsarpa_details():
-    return jsonify(utils.get_kundli_kalsarpa_details())
 
-@app.route('/sadesati_status', methods=['GET'])
-def sadesati_status():
-    return jsonify(utils.get_sadesati_status())
 
-@app.route('/pitra_dosh_report', methods=['GET'])
-def pitra_dosh_report():
-    return jsonify(utils.get_pitra_dosh_report())
+
+
+
+@app.route('/dosh_report', methods=['GET'])
+def dosh_report():
+    return jsonify([
+        utils.get_pitra_dosh_report(),
+        utils.get_sadesati_status(),
+        utils.get_kundli_kalsarpa_details(),
+        utils.get_kundli_manglik_details()
+    ])
 
 @app.route('/sadesati_remedies', methods=['GET'])
 def sadesati_remedies():

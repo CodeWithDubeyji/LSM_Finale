@@ -1,6 +1,6 @@
 import requests
 import json
-
+from langchain.tools import tool
 # Base URL list for different Kundli API endpoints
 BASE_URLS = {
     "astro_kundli_details": "https://www.astroyogi.com/contentsyn/kundli/getastrokundlidetails",
@@ -22,6 +22,8 @@ BASE_URLS = {
     "kundli_matching_ashtakoota_details": "https://www.astroyogi.com/contentsyn/kundli/getkundlimatchingashtakootdetails",
 
 }
+
+
 
 # Example user data
 user_data = {
@@ -60,22 +62,23 @@ def fetch_kundli_data(endpoint_key, user_data):
         return {"error": f"Failed to fetch data from {url}, status code: {response.status_code}"}
 
 # Individual functions for each endpoint
+@tool
 def get_astro_kundli_details():
     '''Kundali details provide astrological insights based on the birth chart, including the nakshatra, ascendant, planetary positions, and yogas. These factors influence the individual’s personality, relationships, and life events. They also help with compatibility and suggest astrological remedies for challenges '''
     return fetch_kundli_data("astro_kundli_details", user_data)
-
+@tool
 def get_kundli_numerology_details():
     '''Numerology details provide insights into the individual’s personality, strengths, weaknesses, and life path based on their birth date and name. Numerology calculations assign numerical values to letters and numbers to reveal hidden meanings and patterns in one’s life. It can help with self-discovery, decision-making, and personal growth.''' 
     return fetch_kundli_data("kundli_numerology_details", user_data)
-
+@tool
 def get_daily_kundli_nakshatra():
     '''This provides predictions based on the position of the moon's sign and nakshatra at birth. It affects health, emotions, career, relationships, and travel, giving personalized guidance on various aspects of life.'''
     return fetch_kundli_data("daily_kundli_nakshatra", user_data)
-
+@tool
 def get_hora_chart_details():
     '''A detailed division of the sky, showing the placement of planets across the 12 zodiac signs at the time of birth. It gives insights into the planetary influences and their impact on different life areas like career, health, and relationships'''
     return fetch_kundli_data("hora_chart_details", user_data)
-
+@tool
 def get_kundli_planetary_details():
     ''' This chart outlines the position of planets, their respective houses, and aspects (influence) on other planets. It reflects the overall nature of the person’s life experiences and karmic influences'''
     return fetch_kundli_data("kundli_planetary_details", user_data)
