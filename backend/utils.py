@@ -16,6 +16,11 @@ BASE_URLS = {
     "rudraksha_suggestion": "https://www.astroyogi.com/contentsyn/kundli/getrudrakshasuggestion",
     "gem_suggestion": "https://www.astroyogi.com/contentsyn/kundli/getbasicgemsuggestion",
     "major_vimshottari_dasha": "https://www.astroyogi.com/contentsyn/kundli/getmajorvdasha",
+    "kundli_matching_match_details": "https://www.astroyogi.com/contentsyn/kundli/getkundlimatchingastrodetails",
+    "kundli_matching_dosha_details": "https://www.astroyogi.com/contentsyn/kundli/getkundlimatchingdoshadetails",
+    "kundli_matching_manglik_details": "https://www.astroyogi.com/contentsyn/kundli/getkundlimatchingmanglikreport",
+    "kundli_matching_ashtakoota_details": "https://www.astroyogi.com/contentsyn/kundli/getkundlimatchingashtakootdetails",
+
 }
 
 # Example user data
@@ -107,18 +112,44 @@ def get_major_vimshottari_dasha():
     '''Vimshottari Dasha is a system of planetary periods in Vedic astrology, indicating the influence of different planets at specific times in life. The major Dasha period is based on the position of the moon at birth and its influence on various life events and experiences.'''
     return fetch_kundli_data("major_vimshottari_dasha", user_data)
 
-# Main driver code to test all endpoints
+# # Main driver code to test all endpoints
+# if __name__ == '__main__':
+#     print("Astro Kundli Details:", get_astro_kundli_details())
+#     print("Kundli Numerology Details:", get_kundli_numerology_details())
+#     print("Daily Kundli Nakshatra:", get_daily_kundli_nakshatra())
+#     print("Hora Chart Details:", get_hora_chart_details())
+#     print("Kundli Planetary Details:", get_kundli_planetary_details())
+#     print("Kundli Manglik Details:", get_kundli_manglik_details())
+#     print("Kundli Kalsarpa Details:", get_kundli_kalsarpa_details())
+#     print("Sadesati Status:", get_sadesati_status())
+#     print("Pitra Dosh Report:", get_pitra_dosh_report())
+#     print("Sadesati Remedies:", get_sadesati_remedies())
+#     print("Rudraksha Suggestion:", get_rudraksha_suggestion())
+#     print("Gem Suggestion:", get_gem_suggestion())
+#     print("Major Vimshottari Dasha:", get_major_vimshottari_dasha())
+
+
+matching_data = {"m_day":"7","m_month":"4","m_year":"2020","m_hour":16,"m_min":8,"m_lat":"19.2361","m_lon":"72.9488","m_tzone":"5.5","f_day":"6","f_month":"2","f_year":"2023","f_hour":1,"f_min":12,"f_lat":"19.2361","f_lon":"72.9488","f_tzone":"5.5"}
+
+def get_kundli_match_details():
+    '''Kundli matching is a process of analyzing the compatibility between two individuals based on their birth charts. It considers factors like Guna Milan, Manglik Dosha, and planetary positions to assess the harmony and potential challenges in a relationship.'''
+    
+    return fetch_kundli_data("kundli_matching_match_details", matching_data)
+
+def get_kundali_dosha_details():
+    '''Kundali doshas are astrological combinations that indicate potential challenges or obstacles in a person’s life. They can affect various aspects like health, relationships, and career. Understanding and addressing these doshas can help in minimizing their negative effects.'''
+    return fetch_kundli_data("kundli_matching_dosha_details", user_data)
+
+def get_kundli_manglik_details():
+    '''Manglik Dosha is an astrological condition caused by the planet Mars in specific positions in the birth chart. It is believed to affect marriage and relationships, leading to conflicts and challenges. Remedies and precautions can help mitigate the effects of Manglik Dosha.'''
+    return fetch_kundli_data("kundli_matching_manglik_details", user_data)
+
+def get_kundli_ashtakoota_details():  
+    '''Ashtakoota matching is a method of Kundli matching that assesses the compatibility between two individuals based on eight factors or gunas. Each factor represents different aspects of life and relationships, providing insights into the harmony and challenges in a marriage.'''
+    return fetch_kundli_data("kundli_matching_ashtakoota_details", matching_data)
+
 if __name__ == '__main__':
-    print("Astro Kundli Details:", get_astro_kundli_details())
-    print("Kundli Numerology Details:", get_kundli_numerology_details())
-    print("Daily Kundli Nakshatra:", get_daily_kundli_nakshatra())
-    print("Hora Chart Details:", get_hora_chart_details())
-    print("Kundli Planetary Details:", get_kundli_planetary_details())
+    print("Kundli Match Details:", get_kundli_match_details())
+    print("Kundali Dosha Details:", get_kundali_dosha_details())
     print("Kundli Manglik Details:", get_kundli_manglik_details())
-    print("Kundli Kalsarpa Details:", get_kundli_kalsarpa_details())
-    print("Sadesati Status:", get_sadesati_status())
-    print("Pitra Dosh Report:", get_pitra_dosh_report())
-    print("Sadesati Remedies:", get_sadesati_remedies())
-    print("Rudraksha Suggestion:", get_rudraksha_suggestion())
-    print("Gem Suggestion:", get_gem_suggestion())
-    print("Major Vimshottari Dasha:", get_major_vimshottari_dasha())
+    print("Kundli Ashtakoota Details:", get_kundli_ashtakoota_details())
