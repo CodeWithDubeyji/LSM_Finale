@@ -25,15 +25,19 @@ BASE_URLS = {
 
 # Example user data
 user_data = {
-    "Day": 15,
-    "Month": 7,
-    "Year": 2005,
-    "Hour": 22,
-    "Min": 53,
-    "Lat": "19.2361",
-    "Lon": "72.9488",
-    "Tzone": "5.5",
-    "City": "Mumbai",
+  "Day": 15,
+  "Month": 7,
+  "Year": 2005,
+  "Hour": 22,
+  "Min": 53,
+  "Lat": "19.2361",
+  "Lon": "72.9488",
+  "Tzone": "5.5",
+  "City": "Mumbai",
+  "Varshaphal_year": "2025",
+  "PlanetName": "",
+  "PlanetId": "",
+  "ChartId": ""
 }
 
 def fetch_kundli_data(endpoint_key, user_data):
@@ -112,7 +116,7 @@ def get_major_vimshottari_dasha():
     '''Vimshottari Dasha is a system of planetary periods in Vedic astrology, indicating the influence of different planets at specific times in life. The major Dasha period is based on the position of the moon at birth and its influence on various life events and experiences.'''
     return fetch_kundli_data("major_vimshottari_dasha", user_data)
 
-# # Main driver code to test all endpoints
+# Main driver code to test all endpoints
 # if __name__ == '__main__':
 #     print("Astro Kundli Details:", get_astro_kundli_details())
 #     print("Kundli Numerology Details:", get_kundli_numerology_details())
@@ -148,8 +152,8 @@ def get_kundli_ashtakoota_details():
     '''Ashtakoota matching is a method of Kundli matching that assesses the compatibility between two individuals based on eight factors or gunas. Each factor represents different aspects of life and relationships, providing insights into the harmony and challenges in a marriage.'''
     return fetch_kundli_data("kundli_matching_ashtakoota_details", matching_data)
 
-if __name__ == '__main__':
-    print("Kundli Match Details:", get_kundli_match_details())
-    print("Kundali Dosha Details:", get_kundali_dosha_details())
-    print("Kundli Manglik Details:", get_kundli_manglik_details())
-    print("Kundli Ashtakoota Details:", get_kundli_ashtakoota_details())
+# if __name__ == '__main__':
+#     print("Kundli Match Details:", get_kundli_match_details())
+#     print("Kundali Dosha Details:", get_kundali_dosha_details())
+#     print("Kundli Manglik Details:", get_kundli_manglik_details())
+#     print("Kundli Ashtakoota Details:", get_kundli_ashtakoota_details())
