@@ -17,7 +17,10 @@ const Kundli = () => {
   })
 
   const [selectedOption, setSelectedOption] = useState('Janam Kundli')
-  const [optionData, setOptionData] = useState('')
+  const [insights, setInsights] = useState('')
+  const [doshas, setDoshas] = useState('')
+  const [remedies, setRemedies] = useState('')
+  const [horoscope, setHoroscope] = useState('')
   const [response, setResponse] = useState(null)
 
   const handleChange = e => {
@@ -102,7 +105,7 @@ const Kundli = () => {
       )
       if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`)
       const data = await res.json()
-      setOptionData(data)
+      setInsights(data)
     } catch (error) {
       console.error('Error fetching Insights data:', error)
       setOptionData({
@@ -127,7 +130,7 @@ const Kundli = () => {
       )
       if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`)
       const data = await res.json()
-      setOptionData(data)
+      setDoshas(data)
     } catch (error) {
       console.error('Error fetching Doshas data:', error)
       setOptionData({
@@ -151,7 +154,7 @@ const Kundli = () => {
       )
       if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`)
       const data = await res.json()
-      setOptionData(data)
+      setRemedies(data)
       console.log(data)
     } catch (error) {
       console.error('Error fetching Doshas data:', error)
@@ -170,20 +173,21 @@ const Kundli = () => {
     <div className='bg-[#000622] min-h-screen px-16 pt-20'>
       <div className='flex justify-between items-center'>
         {/* Form Section */}
-        <div className='w-1/2'>
+        <div className='w-full md:w-2/3 lg:w-1/2 mx-auto'>
           <form
             onSubmit={handleSubmit}
-            style={{ maxWidth: '400px' }}
-            className='backdrop-blur-lg bg-white bg-opacity-10 p-8 rounded-lg '
+            className='backdrop-blur-lg bg-white bg-opacity-20 p-6 rounded-lg shadow-lg'
+            style={{ maxWidth: '500px' }}
           >
-            <div style={{ marginBottom: '1rem' }}>
+            <h2 className='text-2xl font-semibold text-white mb-6 text-center'>
+              Enter Your Details
+            </h2>
+
+            {/* Name */}
+            <div className='mb-4'>
               <label
                 htmlFor='name'
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  color: 'white'
-                }}
+                className='block text-white text-sm font-medium mb-2'
               >
                 Name:
               </label>
@@ -194,18 +198,15 @@ const Kundli = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{ width: '100%', padding: '0.5rem' }}
+                className='w-full p-3 rounded-lg bg-white bg-opacity-10 text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400'
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
+            {/* Gender */}
+            <div className='mb-4'>
               <label
                 htmlFor='gender'
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  color: 'white'
-                }}
+                className='block text-white text-sm font-medium mb-2'
               >
                 Gender:
               </label>
@@ -215,7 +216,7 @@ const Kundli = () => {
                 value={formData.gender}
                 onChange={handleChange}
                 required
-                style={{ width: '100%', padding: '0.5rem' }}
+                className='w-full p-3 rounded-lg bg-white bg-opacity-10 text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400'
               >
                 <option value=''>Select Gender</option>
                 <option value='male'>Male</option>
@@ -224,14 +225,11 @@ const Kundli = () => {
               </select>
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
+            {/* Birth Date */}
+            <div className='mb-4'>
               <label
                 htmlFor='birthDate'
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  color: 'white'
-                }}
+                className='block text-white text-sm font-medium mb-2'
               >
                 Birth Date:
               </label>
@@ -242,18 +240,15 @@ const Kundli = () => {
                 value={formData.birthDate}
                 onChange={handleChange}
                 required
-                style={{ width: '100%', padding: '0.5rem' }}
+                className='w-full p-3 rounded-lg bg-white bg-opacity-10 text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400'
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
+            {/* Birth Time */}
+            <div className='mb-4'>
               <label
                 htmlFor='birthTime'
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  color: 'white'
-                }}
+                className='block text-white text-sm font-medium mb-2'
               >
                 Birth Time:
               </label>
@@ -264,18 +259,15 @@ const Kundli = () => {
                 value={formData.birthTime}
                 onChange={handleChange}
                 required
-                style={{ width: '100%', padding: '0.5rem' }}
+                className='w-full p-3 rounded-lg bg-white bg-opacity-10 text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400'
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
+            {/* Birth Place */}
+            <div className='mb-4'>
               <label
                 htmlFor='birthPlace'
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  color: 'white'
-                }}
+                className='block text-white text-sm font-medium mb-2'
               >
                 Birth Place:
               </label>
@@ -286,18 +278,14 @@ const Kundli = () => {
                 value={formData.birthPlace}
                 onChange={handleChange}
                 required
-                style={{ width: '100%', padding: '0.5rem' }}
+                className='w-full p-3 rounded-lg bg-white bg-opacity-10 text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400'
               />
             </div>
+
+            {/* Submit Button */}
             <button
               type='submit'
-              style={{
-                padding: '0.75rem',
-                background: '#4CAF50',
-                color: 'white',
-                border: 'none',
-                cursor: 'pointer'
-              }}
+              className='w-full mt-4 p-3 bg-teal-500 text-white font-medium text-lg rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400'
             >
               Submit
             </button>
@@ -308,11 +296,37 @@ const Kundli = () => {
         <div className='w-1/2 h-[85vh] text-white overflow-scroll scrollbar-hide'>
           {response?.resObj1 && (
             <div className='flex flex-col gap-4 justify-start'>
-              <div className='bg-white bg-opacity-10 p-8 rounded-lg'>
-                <h1>Your Details</h1>
-                <p>Nakshatra: {response.resObj1.nakshatra.item2}</p>
-                <p>Ascendants: {response.resObj1.ascendant.item2}</p>
-                <p>Sign: {response.resObj1.sign.item2.split('zodiac')[1]}</p>
+              <div className='bg-white bg-opacity-10 p-8 rounded-lg shadow-lg'>
+                <h1 className='text-3xl font-semibold text-white mb-6'>
+                  Your Details
+                </h1>
+
+                <div className='flex flex-col gap-4'>
+                  <div className='bg-white bg-opacity-20 p-4 rounded-lg'>
+                    <p className='text-lg font-medium text-white'>
+                      <span className='font-bold text-teal-400'>
+                        Nakshatra:
+                      </span>{' '}
+                      {response.resObj1.nakshatra.item2}
+                    </p>
+                  </div>
+
+                  <div className='bg-white bg-opacity-20 p-4 rounded-lg'>
+                    <p className='text-lg font-medium text-white'>
+                      <span className='font-bold text-teal-400'>
+                        Ascendants:
+                      </span>{' '}
+                      {response.resObj1.ascendant.item2}
+                    </p>
+                  </div>
+
+                  <div className='bg-white bg-opacity-20 p-4 rounded-lg'>
+                    <p className='text-lg font-medium text-white'>
+                      <span className='font-bold text-teal-400'>Sign:</span>{' '}
+                      {response.resObj1.sign.item2.split('zodiac')[1]}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Option Selection Buttons */}
@@ -394,121 +408,178 @@ const Kundli = () => {
               )}
 
               {/* Render Insights, Doshas, and other options data */}
-              {selectedOption === 'Insights' && optionData?.data?.prediction && (
-                <div className='bg-white bg-opacity-10 p-8 rounded-lg'>
-                  <h2 className='text-xl font-medium leading-relaxed mb-3'>
+              {selectedOption === 'Insights' && insights?.data?.prediction && (
+                <div className='bg-white bg-opacity-10 p-8 rounded-lg shadow-xl'>
+                  <h2 className='text-2xl font-semibold text-white mb-8 text-center'>
                     {selectedOption}
                   </h2>
-                  {Object.entries(optionData.data.prediction).map(
+                  {Object.entries(insights.data.prediction).map(
                     ([key, value], index) => (
-                      <div key={index} className='mb-4'>
-                        <h3 className='text-lg font-semibold capitalize text-white'>
+                      <div
+                        key={index}
+                        className='mb-6 p-6 bg-white bg-opacity-15 rounded-lg shadow-lg hover:bg-opacity-20 transition duration-300'
+                      >
+                        <h3 className='text-xl font-medium text-white capitalize mb-3'>
                           {key.replace('_', ' ')}
                         </h3>
-                        <p className='text-white'>{value}</p>
+                        <p className='text-white text-sm'>{value}</p>
                       </div>
                     )
                   )}
                 </div>
               )}
 
-              {selectedOption === 'Doshas' && optionData && (
-                <div className='bg-white bg-opacity-10 p-8 rounded-lg'>
-                  <h2 className='text-xl font-medium leading-relaxed mb-3'>
+              {selectedOption === 'Doshas' && doshas && (
+                <div className='bg-white bg-opacity-10 p-8 rounded-lg shadow-lg'>
+                  <h2 className='text-2xl font-semibold text-white mb-4'>
                     {selectedOption}
                   </h2>
-                  {optionData.error ? (
-                    <p className='text-red-500'>{optionData.error}</p>
+                  {doshas.error ? (
+                    <p className='text-red-500'>{doshas.error}</p>
                   ) : (
-                    <div className='flex flex-col gap-4'>
-                      <div>
-                        <h3 className='text-lg font-medium leading-relaxed my-2'>
+                    <div className='flex flex-col gap-6'>
+                      <div className='bg-white bg-opacity-20 p-4 rounded-lg shadow-sm'>
+                        <h3 className='text-lg font-medium text-white mb-2'>
                           Pitra Dosha
                         </h3>
-                        <p>
-                          Present:{' '}
-                          {optionData[0].data.is_pitri_dosha_present
+                        <p className='text-white'>
+                          <strong>Present:</strong>{' '}
+                          {doshas[0].data.is_pitri_dosha_present
                             ? 'True'
-                            : 'false'}
+                            : 'False'}
                         </p>
-                        <p>Conclusion: {optionData[0].data.conclusion}</p>
-                        <p>
-                          Effects:{' '}
-                          {optionData[0].data.effects
-                            ? optionData[0].data.effects
-                            : 'No effect'}
+                        <p className='text-white'>
+                          <strong>Conclusion:</strong>{' '}
+                          {doshas[0].data.conclusion}
+                        </p>
+                        <p className='text-white'>
+                          <strong>Effects:</strong>{' '}
+                          {doshas[0].data.effects || 'No effect'}
                         </p>
                       </div>
-                      <div>
-                        <h3 className='text-lg font-medium leading-relaxed my-2'>
+
+                      <div className='bg-white bg-opacity-20 p-4 rounded-lg shadow-sm'>
+                        <h3 className='text-lg font-medium text-white mb-2'>
                           Sadhesati Dosha
                         </h3>
-                        <p>
-                          Present:{' '}
-                          {optionData[1].data.sadhesati_status
-                            ? 'True'
-                            : 'false'}
+                        <p className='text-white'>
+                          <strong>Present:</strong>{' '}
+                          {doshas[1].data.sadhesati_status ? 'True' : 'False'}
                         </p>
-                        <p>
-                          Conclusion:
-                          {optionData[1].data.is_undergoing_sadhesati}
+                        <p className='text-white'>
+                          <strong>Conclusion:</strong>{' '}
+                          {doshas[1].data.is_undergoing_sadhesati}
                         </p>
                       </div>
-                      <div>
-                        <h3 className='text-lg font-medium leading-relaxed my-2'>
+
+                      <div className='bg-white bg-opacity-20 p-4 rounded-lg shadow-sm'>
+                        <h3 className='text-lg font-medium text-white mb-2'>
                           Kalsarpa Dosha
                         </h3>
-                        <p>
-                          Present:{' '}
-                          {optionData[2].data.present ? 'True' : 'false'}
+                        <p className='text-white'>
+                          <strong>Present:</strong>{' '}
+                          {doshas[2].data.present ? 'True' : 'False'}
                         </p>
-                        <p>Conclusion: {optionData[2].data.one_line}</p>
+                        <p className='text-white'>
+                          <strong>Conclusion:</strong> {doshas[2].data.one_line}
+                        </p>
                       </div>
-                      <div>
-                        <h3 className='text-lg font-medium leading-relaxed my-2'>
+
+                      <div className='bg-white bg-opacity-20 p-4 rounded-lg shadow-sm'>
+                        <h3 className='text-lg font-medium text-white mb-2'>
                           Manglik Dosha
                         </h3>
-                        <p>Present: {optionData[3].data.manglik_status}</p>
-                        <p>Conclusion: {optionData[3].data.manglik_report}</p>
+                        <p className='text-white'>
+                          <strong>Present:</strong>{' '}
+                          {doshas[3].data.manglik_status}
+                        </p>
+                        <p className='text-white'>
+                          <strong>Conclusion:</strong>{' '}
+                          {doshas[3].data.manglik_report}
+                        </p>
                       </div>
                     </div>
                   )}
                 </div>
               )}
 
-              {selectedOption === 'Remedies' && optionData && (
+              {selectedOption === 'Remedies' && remedies && (
                 <div className='bg-white bg-opacity-10 p-8 rounded-lg'>
                   <h2 className='text-xl font-medium leading-relaxed mb-3'>
                     {selectedOption}
                   </h2>
-                  {optionData.error ? (
-                    <p className='text-red-500'>{optionData.error}</p>
+                  {remedies.error ? (
+                    <p className='text-red-500'>{remedies.error}</p>
                   ) : (
                     <div className='flex flex-col gap-4'>
-                      <div>
-                        <h3 className='text-lg font-medium leading-relaxed my-2'>
+                      <div className='bg-white bg-opacity-20 p-6 rounded-lg shadow-lg hover:bg-opacity-30 transition duration-300'>
+                        <h3 className='text-xl font-semibold text-white mb-4'>
                           Remedies
                         </h3>
-                        <p>
-                          {optionData[0].data.remedies.map((remedy, index) => (
-                            <span key={index}>{remedy}</span>
+                        <p className='text-white'>
+                          {remedies[0].data.remedies.map((remedy, index) => (
+                            <span key={index} className='block mb-2'>
+                              {remedy.split('.').map((part, idx) => (
+                                <span key={idx} className='block'>
+                                  {part}
+                                  {idx < remedy.split('.').length - 1 && <br />}
+                                </span>
+                              ))}
+                            </span>
                           ))}
                         </p>
                       </div>
-                      <div>
-                        <h3 className='text-lg font-medium leading-relaxed my-2'>
+
+                      <div className='bg-white bg-opacity-20 p-6 rounded-lg shadow-lg hover:bg-opacity-30 transition duration-300'>
+                        <h3 className='text-xl font-semibold text-white mb-4'>
                           Gemstones
                         </h3>
-                        <p>
-                          Present:{' '}
-                          {optionData[1].data.sadhesati_status
-                            ? 'True'
-                            : 'false'}
-                        </p>
-                        <p>
-                          Conclusion:
-                          {optionData[1].data.is_undergoing_sadhesati}
-                        </p>
+                        <div className='space-y-6'>
+                          {/* Benefics Section */}
+                          <div className='bg-white bg-opacity-10 p-4 rounded-lg hover:bg-opacity-20 transition duration-300'>
+                            <h4 className='text-lg font-medium text-white mb-2'>
+                              Benefics
+                            </h4>
+                            <p className='text-white'>
+                              <strong>Name:</strong>{' '}
+                              {remedies[2].data.benefic.name}
+                            </p>
+                            <p className='text-white'>
+                              <strong>Deity:</strong>{' '}
+                              {remedies[2].data.benefic.gem_deity}
+                            </p>
+                          </div>
+
+                          {/* Life Section */}
+                          <div className='bg-white bg-opacity-10 p-4 rounded-lg hover:bg-opacity-20 transition duration-300'>
+                            <h4 className='text-lg font-medium text-white mb-2'>
+                              Life
+                            </h4>
+                            <p className='text-white'>
+                              <strong>Name:</strong>{' '}
+                              {remedies[2].data.life.name}
+                            </p>
+                            <p className='text-white'>
+                              <strong>Deity:</strong>{' '}
+                              {remedies[2].data.life.gem_deity}
+                            </p>
+                          </div>
+
+                          {/* Lucky Section */}
+                          <div className='bg-white bg-opacity-10 p-4 rounded-lg hover:bg-opacity-20 transition duration-300'>
+                            <h4 className='text-lg font-medium text-white mb-2'>
+                              Lucky
+                            </h4>
+                            <p className='text-white'>
+                              <strong>Name:</strong>{' '}
+                              {remedies[2].data.lucky.name}
+                            </p>
+                            <p className='text-white'>
+                              <strong>Deity:</strong>{' '}
+                              {remedies[2].data.lucky.gem_deity}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}

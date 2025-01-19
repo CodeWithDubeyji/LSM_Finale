@@ -22,8 +22,8 @@ export default function Navbar ({ isLoggedIn, user, onLogout }) {
             <div className='absolute left-0 bottom-0 h-1 w-0 bg-white transition-all duration-300 group-hover:w-full'></div>
           </li>
           <li className='text-white text-lg relative group'>
-            <Link to='/reels' className='hover:text-gray-300 transition'>
-              Reels
+            <Link to='/chatbot' className='hover:text-gray-300 transition'>
+              Chatbot
             </Link>
             <div className='absolute left-0 bottom-0 h-1 w-0 bg-white transition-all duration-300 group-hover:w-full'></div>
           </li>

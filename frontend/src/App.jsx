@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Kundli from './pages/Kundli'; // Example private page
 import MeditationAndWorkout from './pages/MeditationAndWorkout';
-import Reels from './pages/Reels';
+import Chatbot from './pages/Chatbot';
 import Layout from './Layout';
 
 function App() {
@@ -39,10 +39,10 @@ function App() {
               }
             />
             <Route
-              path="/reels/*"
+              path="/chatbot/*"
               element={
                 <ProtectedRoute>
-                  <Reels />
+                  <Chatbot />
                 </ProtectedRoute>
               }
             />
