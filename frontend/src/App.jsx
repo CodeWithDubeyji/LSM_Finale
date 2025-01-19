@@ -1,18 +1,47 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
-const App = () => {
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './components/AuthProvider';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Kundli from './pages/Kundli'; // Example private page
+
+import Chatbot from './pages/Chatbot';
+import Layout from './Layout';
+
+function App() {
   return (
-    <div>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-      </Routes>
-    </div>
-  )
+    <AuthProvider>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<Home />} />
+
+          {/* Routes with persistent Layout */}
+          <Route element={<Layout />}>
+            {/* Protected routes */}
+            <Route
+              path="/kundli/*"
+              element={
+                <ProtectedRoute>
+                  <Kundli />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chatbot/*"
+              element={
+                <ProtectedRoute>
+                  <Chatbot />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
