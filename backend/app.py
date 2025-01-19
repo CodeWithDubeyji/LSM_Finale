@@ -53,17 +53,11 @@ def dosh_report():
         utils.get_kundli_manglik_details()
     ])
 
-@app.route('/sadesati_remedies', methods=['GET'])
+@app.route('/remedies', methods=['GET'])
 def sadesati_remedies():
-    return jsonify(utils.get_sadesati_remedies())
+    return jsonify([utils.get_sadesati_remedies(),utils.get_rudraksha_suggestion(),utils.get_gem_suggestion()])
 
-@app.route('/rudraksha_suggestion', methods=['GET'])
-def rudraksha_suggestion():
-    return jsonify(utils.get_rudraksha_suggestion())
 
-@app.route('/gem_suggestion', methods=['GET'])
-def gem_suggestion():
-    return jsonify(utils.get_gem_suggestion())
 
 @app.route('/major_vimshottari_dasha', methods=['GET'])
 def major_vimshottari_dasha():
