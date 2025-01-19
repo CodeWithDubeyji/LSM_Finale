@@ -15,7 +15,8 @@ const features = [
     description:
       'Generate personalized Kundalis with accurate astrological calculations.',
     buttonText: 'Learn more',
-    spotlightColor: 'rgba(0, 229, 255, 0.2)'
+    spotlightColor: 'rgba(0, 229, 255, 0.2)',
+    link: '/kundli'
   },
   {
     icon: 'fa fa-heart',
@@ -23,7 +24,8 @@ const features = [
     description:
       'Find your perfect match with detailed Kundali compatibility analysis.',
     buttonText: 'Learn more',
-    spotlightColor: 'rgba(255, 0, 127, 0.2)'
+    spotlightColor: 'rgba(255, 0, 127, 0.2)',
+    link: '/'
   },
   {
     icon: 'fa fa-lightbulb',
@@ -31,7 +33,8 @@ const features = [
     description:
       'Get deep insights into your life based on astrological principles.',
     buttonText: 'Learn more',
-    spotlightColor: 'rgba(255, 195, 0, 0.2)'
+    spotlightColor: 'rgba(255, 195, 0, 0.2)',
+    link: '/kundli'
   },
   {
     icon: 'fa fa-comments',
@@ -39,7 +42,8 @@ const features = [
     description:
       'Receive personalized daily horoscope updates directly on WhatsApp.',
     buttonText: 'Learn more',
-    spotlightColor: 'rgba(0, 255, 127, 0.2)'
+    spotlightColor: 'rgba(0, 255, 127, 0.2)',
+    link: '/'
   },
   {
     icon: 'fa fa-dumbbell',
@@ -47,7 +51,8 @@ const features = [
     description:
       'AI-powered recommendations for personalized meditation and workout plans.',
     buttonText: 'Learn more',
-    spotlightColor: 'rgba(127, 0, 255, 0.2)'
+    spotlightColor: 'rgba(127, 0, 255, 0.2)',
+    link: 'https://framevr.io/zenpath'
   },
   {
     icon: 'fa fa-robot',
@@ -55,7 +60,8 @@ const features = [
     description:
       'Chat with our intelligent bot for instant astrological advice and guidance.',
     buttonText: 'Learn more',
-    spotlightColor: 'rgba(255, 69, 0, 0.2)'
+    spotlightColor: 'rgba(255, 69, 0, 0.2)',
+    link: '/chatbot'
   }
 ]
 
@@ -183,22 +189,44 @@ const Home = () => {
           </h2>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
             {features.map((feature, index) => (
-              <SpotlightCard
-                key={index}
-                className='custom-spotlight-card relative h-58'
-                spotlightColor={feature.spotlightColor}
-              >
-                <i className={`${feature.icon} + text-white`}></i>
-                <h2 className='text-white text-2xl font-semibold leading-relaxed text-left'>
-                  {feature.title}
-                </h2>
-                <p className='text-gray-400 text-sm leading-relaxed text-left my-2 mb-16'>
-                  {feature.description}
-                </p>
-                <button className='text-white py-2 px-3 bg-gradient-to-b from-[#222222] to-[#000000] rounded-lg absolute left-8 bottom-4'>
-                  {feature.buttonText}
-                </button>
-              </SpotlightCard>
+              !feature.link.startsWith('http') ? (
+              <Link to={feature.link} key={index} >
+                <SpotlightCard
+                  key={index}
+                  className='custom-spotlight-card relative h-58'
+                  spotlightColor={feature.spotlightColor}
+                >
+                  <i className={`${feature.icon} + text-white`}></i>
+                  <h2 className='text-white text-2xl font-semibold leading-relaxed text-left'>
+                    {feature.title}
+                  </h2>
+                  <p className='text-gray-400 text-sm leading-relaxed text-left my-2 mb-16'>
+                    {feature.description}
+                  </p>
+                  <button className='text-white py-2 px-3 bg-gradient-to-b from-[#222222] to-[#000000] rounded-lg absolute left-8 bottom-4'>
+                    {feature.buttonText}
+                  </button>
+                </SpotlightCard>
+              </Link>): (
+                <a href={feature.link} key={index} target='_blank' rel='noreferrer'>
+                <SpotlightCard
+                  key={index}
+                  className='custom-spotlight-card relative h-64 '
+                  spotlightColor={feature.spotlightColor}
+                >
+                  <i className={`${feature.icon} + text-white`}></i>
+                  <h2 className='text-white text-2xl font-semibold leading-relaxed text-left'>
+                    {feature.title}
+                  </h2>
+                  <p className='text-gray-400 text-sm leading-relaxed text-left my-2 mb-16'>
+                    {feature.description}
+                  </p>
+                  <button className='text-white py-2 px-3 bg-gradient-to-b from-[#222222] to-[#000000] rounded-lg absolute left-8 bottom-4'>
+                    {feature.buttonText}
+                  </button>
+                </SpotlightCard>
+              </a>
+              )
             ))}
           </div>
         </section>
@@ -210,7 +238,7 @@ const Home = () => {
         </section>
         <footer className=' w-full max-w-[80%] border-2 p-2 text-center rounded-lg text-white flex justify-center items-center gap-2'>
           <p>Made with </p>
-          <Heart size={20} fill='red' strokeWidth={0}/>
+          <Heart size={20} fill='red' strokeWidth={0} />
           <p>By 3beans4coffee</p>
         </footer>
       </main>
