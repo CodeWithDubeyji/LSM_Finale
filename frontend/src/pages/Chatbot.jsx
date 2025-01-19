@@ -38,7 +38,7 @@ const Chatbot = () => {
     await wait(1000)
 
     const botResponse =
-      '**I am a bot**. I am not capable of answering your question. Please ask a human. lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'If you have breathing problems, try diaphragmatic breathing (breathe deeply into your belly), pursed-lip breathing (inhale through your nose, exhale slowly through pursed lips), and gentle mindfulness meditation to focus on your breath. For workouts, light cardio like walking or swimming and yoga poses like Cobra or Bridge can improve lung capacity. Always start slow, stay hydrated, and consult a doctor if discomfort arises.'
 
     setMessage(prevMessages => [
       ...prevMessages,
