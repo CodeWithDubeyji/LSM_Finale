@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from './components/Home/Navbar'
-import { app } from './firebaseConfig' // Import the Firebase app instance
+import { app } from '../src/firebaseConfig' // Import the Firebase app instance
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth' // Assuming you're using Firebase authentication
 function Layout () {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
