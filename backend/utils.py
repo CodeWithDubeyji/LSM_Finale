@@ -155,8 +155,58 @@ def get_kundli_match_ashtakoota_details():
     '''Ashtakoota matching is a method of Kundli matching that assesses the compatibility between two individuals based on eight factors or gunas. Each factor represents different aspects of life and relationships, providing insights into the harmony and challenges in a marriage.'''
     return fetch_kundli_data("kundli_matching_ashtakoota_details", matching_data)
 
-# if __name__ == '__main__':
-#     print("Kundli Match Details:", get_kundli_match_details())
-#     print("Kundali Dosha Details:", get_kundali_dosha_details())
-#     print("Kundli Manglik Details:", get_kundli_manglik_details())
-#     print("Kundli Ashtakoota Details:", get_kundli_ashtakoota_details())
+
+import json
+import requests
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+BASE_API_URL = "https://api.langflow.astra.datastax.com"
+LANGFLOW_ID = "27767f1a-0e03-44ce-9fc9-c47fbbb6a56a"
+FLOW_ID = "3aafd955-026d-4a15-88a3-fc0c7ccc45b1"
+APPLICATION_TOKEN = os.getenv("APPLICATION_TOKEN")
+TWEAKS = {
+    "ChatOutput-KoznI": {},
+    "ChatInput-UA8ze": {},
+    "CustomComponent-jq528": {},
+    "ParseData-bz1dc": {},
+    "ParseData-q6Mn9": {},
+    "AstraDBGraph-mD2Uq": {},
+    "Prompt-sz65W": {},
+    "ParseData-R6IIG": {},
+    "GroqModel-DNk4j": {},
+    "File-Ub7Ax": {},
+    "Google Generative AI Embeddings-WVWy1": {},
+    "SemanticTextSplitter-DqFRp": {},
+    "Google Generative AI Embeddings-U5mJA": {},
+    "SplitText-4GXw6": {}
+}
+
+def run_message(message: str, application_token: str = APPLICATION_TOKEN, endpoint: str = FLOW_ID) -> dict:
+    """
+    Run a flow with a given message and optional tweaks to get spiritual insights.
+
+    :param message: The message to send to the flow
+    :param application_token: Application Token for authentication
+    :param endpoint: The ID or the endpoint name of the flow
+    :return: The JSON response from the flow
+    """
+    api_url = f"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{endpoint}"
+
+    payload = {
+        "input_value": message,
+        "output_type": "chat",  # output as chat
+        "input_type": "chat",   # input type as chat
+        "tweaks": TWEAKS       # Include any custom tweaks
+    }
+    
+    headers = {"Authorization": f"Bearer {application_token}", "Content-Type": "application/json"}
+    
+    # Make the API request
+    response = requests.post(api_url, json=payload, headers=headers)
+    
+    # Return the response as a JSON object
+    return response.json()
+
+# Example usage of the function

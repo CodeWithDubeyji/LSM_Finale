@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import utils
-
+from llm import *
 app = Flask(__name__)
 CORS(app)
 
@@ -38,12 +38,6 @@ def hora_chart_details():
 def kundli_planetary_details():
     return jsonify(utils.get_kundli_planetary_details.invoke(""))
 
-
-
-
-
-
-
 @app.route('/dosh_report', methods=['GET'])
 def dosh_report():
     return jsonify([
@@ -78,6 +72,16 @@ def kundli_match_manglik_details():
 @app.route('/kundli_match_ashtakoota_details', methods=['GET'])
 def kundli_ashtakoota_details():
     return jsonify(utils.get_kundli_match_ashtakoota_details())
+
+@app.route("/chatbot", methods=["POST"])
+def chatbot():
+    data = request.json
+    message = data.get("user_query")
+    response = {
+        "user_query": message,
+        "tool_calls": run_tool_from_query(message)
+    }
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run(debug=True)
