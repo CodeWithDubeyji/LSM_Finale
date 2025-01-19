@@ -35,7 +35,7 @@ const Login = () => {
     try {
       await signInWithPopup(auth, provider)
       alert('Logged in with Google!')
-      navigate('/dashboard')
+      navigate('/')
     } catch (err) {
       setError(err.message)
     }

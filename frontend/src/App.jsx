@@ -1,31 +1,53 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './components/AuthProvider';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Kundli from './pages/Kundli'; // Example private page
+import MeditationAndWorkout from './pages/MeditationAndWorkout';
+import Reels from './pages/Reels';
+import Layout from './Layout';
 
 function App() {
   return (
     <AuthProvider>
-      
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* Protect routes using ProtectedRoute */}
-          <Route
-            path="/kundli"
-            element={
-              <ProtectedRoute>
-                <Kundli />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<Home />} />
+
+          {/* Routes with persistent Layout */}
+          <Route element={<Layout />}>
+            {/* Protected routes */}
+            <Route
+              path="/kundli/*"
+              element={
+                <ProtectedRoute>
+                  <Kundli />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/meditation-workout/*"
+              element={
+                <ProtectedRoute>
+                  <MeditationAndWorkout />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reels/*"
+              element={
+                <ProtectedRoute>
+                  <Reels />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
         </Routes>
-      
     </AuthProvider>
   );
 }

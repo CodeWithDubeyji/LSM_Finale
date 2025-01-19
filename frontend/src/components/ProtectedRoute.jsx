@@ -5,8 +5,6 @@ import { useAuth } from './AuthProvider';
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
-  console.log(user)
-
   if (loading) {
     return <div>Loading...</div>; // Add a spinner or loading indicator
   }
