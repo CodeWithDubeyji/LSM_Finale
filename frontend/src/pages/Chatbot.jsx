@@ -12,40 +12,39 @@ const Chatbot = () => {
   const ask = async () => {
     if (query.trim() === '') return
 
-    // setLoading(true); // Set loading to true
-    // const response = await fetch(
-    //   `https://threebeans-4coffee-level-super-mind.onrender.com/chatbot`,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "ngrok-skip-browser-warning": "true",
-    //     },
-    //     body: JSON.stringify({ message: query }),
-    //   }
-    // );
-
-    // const data = await response.json();
-    await setMessage(prevMessages => [
+    setMessage(prevMessages => [
       ...prevMessages,
       { text: query, isUser: true }
+     
     ])
 
-    setQuery('')
+    let msg = query
+    setQuery('') // Clear the input field
+    
+
     setLoading(true) // Set loading to true
+    const response = await fetch(
+      `https://teaching-immortal-honeybee.ngrok-free.app/chatbot`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body:JSON.stringify({ user_query : msg })
+      }
+    )
 
-    const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
-    await wait(1000)
-
-    const botResponse =
-      'If you have breathing problems, try diaphragmatic breathing (breathe deeply into your belly), pursed-lip breathing (inhale through your nose, exhale slowly through pursed lips), and gentle mindfulness meditation to focus on your breath. For workouts, light cardio like walking or swimming and yoga poses like Cobra or Bridge can improve lung capacity. Always start slow, stay hydrated, and consult a doctor if discomfort arises.'
+    const data = await response.json()
+    const botResponse = data.outputs[0].outputs[0].artifacts.message
 
     setMessage(prevMessages => [
       ...prevMessages,
-
+   
       { text: botResponse, isUser: false }
     ])
     setLoading(false) // Set loading to false
+   
   }
 
   const handleKeyDown = e => {
@@ -77,13 +76,12 @@ const Chatbot = () => {
                   : 'mr-auto bg-neutral-100 text-black'
               }`}
             >
-
               <ReactMarkdown>{msg.text}</ReactMarkdown>
             </div>
           ))}
 
           {loading && (
-            <div className="bg-neutral-100 p-4 max-w-[70%]  w-fit text-black rounded-xl my-2 mr-auto">
+            <div className='bg-neutral-100 p-4 max-w-[70%]  w-fit text-black rounded-xl my-2 mr-auto'>
               Typing...
             </div>
           )}
