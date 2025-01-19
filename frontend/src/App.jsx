@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Kundli from './pages/Kundli'; // Example private page
-import MeditationAndWorkout from './pages/MeditationAndWorkout';
+
 import Chatbot from './pages/Chatbot';
 import Layout from './Layout';
 
@@ -27,14 +27,6 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Kundli />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/meditation-workout/*"
-              element={
-                <ProtectedRoute>
-                  <MeditationAndWorkout />
                 </ProtectedRoute>
               }
             />

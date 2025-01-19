@@ -164,11 +164,6 @@ const Kundli = () => {
     }
   }
 
-  const handleHoroscope = async () => {
-    setSelectedOption('Horoscope')
-    // Call API for Horoscope and handle the response
-  }
-
   return (
     <div className='bg-[#000622] min-h-screen px-16 pt-20'>
       <div className='flex justify-between items-center'>
@@ -363,14 +358,6 @@ const Kundli = () => {
                     }`}
                   >
                     Remedies
-                  </div>
-                  <div
-                    onClick={handleHoroscope}
-                    className={`bg-white bg-opacity-20 p-2 rounded-full flex-1 text-center cursor-pointer hover:bg-gray-500 ${
-                      selectedOption === 'Horoscope' ? 'bg-gray-600' : ''
-                    }`}
-                  >
-                    Horoscope
                   </div>
                 </div>
               </div>

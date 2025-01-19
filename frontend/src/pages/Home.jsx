@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChartColumnDecreasing } from 'lucide-react'
-import { Link, useNavigate } from 'react-router-dom' // Import useNavigate for routing
+import { Link } from 'react-router-dom' // Import useNavigate for routing
 import { app } from '../firebaseConfig' // Import the Firebase app instance
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth' // Assuming you're using Firebase authentication
 import SpotlightCard from '../components/Home/SpotlightCard'
 import AstrologyHouses from '../components/Home/AstrologyHouses'
 import Navbar from '../components/Home/Navbar'
+import { Heart, Sparkles } from 'lucide-react'
 
 const features = [
   {
@@ -118,7 +118,6 @@ const ParticleBackground = () => {
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
-  const navigate = useNavigate()
 
   const auth = getAuth(app) // Assuming you're using Firebase authentication
 
@@ -157,21 +156,23 @@ const Home = () => {
           className='w-[80%] my-24'
         >
           <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-100'>
-            Unlock the Power of Your Data with DataStax and Langflow
+            Unlock Your Cosmic Potential with Personalized Astrological Insights
           </h1>
           <p className='mt-4 text-lg sm:text-xl lg:text-2xl text-gray-400'>
-            Empower your digital transformation with DataStax's cutting-edge
-            data infrastructure and Langflow's AI-driven insights. Leverage
-            scalable data solutions and real-time analytics to refine your
-            strategy and drive better outcomes.
+            Dive deep into the universe with our comprehensive astrology tools.
+            From personalized Kundali generation to daily horoscope updates and
+            AI-powered meditation plans, we offer you accurate predictions,
+            insightful compatibility analysis, and tailored wellness
+            recommendations—directly to your fingertips.
           </p>
+
           <div className='flex justify-center items-center gap-4'>
             <Link
-              to={isLoggedIn ? '/kundli': '/signup'} // Redirect to /signin
+              to={isLoggedIn ? '/kundli' : '/signup'} // Redirect to /signin
             >
               <div className='w-fit flex justify-center items-center mt-8 text-[#4c4fee] gap-2 px-4 py-2 bg-gray-200 rounded-lg'>
-                <ChartColumnDecreasing size={28} />
                 <p className='font-medium text-lg'>Get Started</p>
+                <Sparkles size={28} />
               </div>
             </Link>
           </div>
@@ -207,6 +208,11 @@ const Home = () => {
           </h2>
           <AstrologyHouses />
         </section>
+        <footer className=' w-full max-w-[80%] border-2 p-2 text-center rounded-lg text-white flex justify-center items-center gap-2'>
+          <p>Made with </p>
+          <Heart size={20} fill='red' strokeWidth={0}/>
+          <p>By 3beans4coffee</p>
+        </footer>
       </main>
     </div>
   )
